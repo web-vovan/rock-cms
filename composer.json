@@ -1,0 +1,24 @@
+{
+    "name": "web-vovan/rock.cms",
+    "description": "cms для laravel",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "web-vovan",
+            "email": "pronin@morizo.ru"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "ext-json": "*",
+        "ext-mbstring": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "\\Webvovan\\RockCms\\Providers\\RockCmsServiceProvider"
+            ]
+        }
+    }
+}
