@@ -12,7 +12,11 @@
     "require": {
         "php": "^8.0",
         "ext-json": "*",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "diglactic/laravel-breadcrumbs": "^7.1",
+        "jeroennoten/laravel-adminlte": "^3.8",
+        "livewire/livewire": "^2.10",
+        "spatie/laravel-medialibrary": "^10.0.0"
     },
     "extra": {
         "laravel": {
