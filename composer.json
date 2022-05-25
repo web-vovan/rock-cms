@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "\\Webvovan\\RockCms\\Providers\\RockCmsServiceProvider"
+                "Webvovan\\RockCms\\Providers\\RockCmsServiceProvider"
             ]
         }
     }
