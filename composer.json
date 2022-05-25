@@ -18,6 +18,11 @@
         "livewire/livewire": "^2.10",
         "spatie/laravel-medialibrary": "^10.0.0"
     },
+    "autoload": {
+        "psr-4": {
+            "Webvovan\\RockCms\\": "src"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
