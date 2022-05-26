@@ -25,10 +25,10 @@ class RockCmsServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'rock.cms');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'rock-cms');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/rock.cms'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/rock-cms'),
         ]);
     }
 }
