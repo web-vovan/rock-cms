@@ -14,8 +14,8 @@ Route::middleware('auth')->post('/admin/logout', [\Webvovan\RockCms\Http\Control
 
 Route::middleware('guest')
     ->group(function () {
-        Route::get('/admin/login', function () {
-            return view('rock-cms::auth.login');
+        Route::middleware('web')->get('/admin/login', function () {
+            return view('auth.login');
         })->name('login');
 
         Route::post('/admin/login', [\Webvovan\RockCms\Http\Controllers\AuthController::class, 'login']);
