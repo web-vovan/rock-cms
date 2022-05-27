@@ -8,8 +8,8 @@
 @stop
 
 @section('adminlte_css_pre')
-    <link rel="stylesheet" href="{{ asset('admin-resources/css/app.css') }}">
-    <script src="{{ asset('admin-resources/js/app.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('rock-cms/css/app.css') }}">
+    <script src="{{ asset('rock-cms/js/app.js') }}"></script>
 @stop
 
 @section('classes_body', $layoutHelper->makeBodyClasses())
