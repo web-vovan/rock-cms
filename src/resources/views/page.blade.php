@@ -11,12 +11,12 @@
     <link rel="stylesheet" href="{{ asset('vendor/rock-cms/css/app.css') }}">
     <script src="{{ asset('vendor/rock-cms/js/app.js') }}"></script>
 
-    @if (file_exists (public_path ('vendor/rock-cms/custom.css')))
-        <link rel="stylesheet" href="{{ asset('vendor/rock-cms/custom.css') }}">
+    @if (file_exists (public_path ('vendor/rock-cms/css/custom.css')))
+        <link rel="stylesheet" href="{{ asset('vendor/rock-cms/css/custom.css') }}">
     @endif
 
-    @if (file_exists (public_path ('vendor/rock-cms/custom.js')))
-        <script src="{{ asset('vendor/rock-cms/js/custom.js.js') }}"></script>
+    @if (file_exists (public_path ('vendor/rock-cms/js/custom.js')))
+        <script src="{{ asset('vendor/rock-cms/js/custom.js') }}"></script>
     @endif
 @stop
 
