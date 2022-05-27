@@ -1,22 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Webvovan\RockCms\Http\Controllers\AuthController;
 
-Route::middleware('auth')
-    ->prefix('admin')
-    ->group(function() {
-        Route::get('/', function () {
-            return view('rock-cms::admin.index');
-        })->name('home');
-    });
+Route::middleware(['web'])->group(function() {
+    Route::middleware(['auth'])->get('/admin', function() {
+        return view('rock-cms::admin.index');
+    })->name('home');
 
-Route::middleware('auth')->post('/admin/logout', [\Webvovan\RockCms\Http\Controllers\AuthController::class, 'logout']);
+    Route::middleware(['auth'])->post('/admin/logout', [AuthController::class, 'logout']);
 
-Route::middleware('guest')
-    ->group(function () {
-        Route::middleware('web')->get('/admin/login', function () {
-            return view('auth.login');
-        })->name('login');
+    Route::middleware(['guest'])->get('/admin/login', function () {
+        return view('auth.login');
+    })->name('login');
 
-        Route::post('/admin/login', [\Webvovan\RockCms\Http\Controllers\AuthController::class, 'login']);
-    });
+    Route::middleware(['guest'])->post('/admin/login', [AuthController::class, 'login']);
+});
