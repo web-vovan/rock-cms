@@ -1,0 +1,44 @@
+.media-card .card-body {
+    width: 200px;
+    height: 200px;
+}
+
+.card-collapse .btn .fa-minus {
+    display: none;
+}
+.card-collapse .btn[aria-expanded="true"] .fa-plus {
+    display: none;
+}
+.card-collapse .btn[aria-expanded="true"] .fa-minus {
+    display: inline-block;
+}
+
+.main-sidebar .brand-link {
+    display: flex;
+}
+.main-sidebar .brand-image {
+    opacity: 1 !important;
+}
+
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-wrap .logo {
+    height: 80px;
+}
+
+.modal-content .rock-collapse img {
+    max-height: 300px;
+    max-width: 100%;
+}
