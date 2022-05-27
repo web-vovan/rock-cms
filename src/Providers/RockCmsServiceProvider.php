@@ -2,7 +2,9 @@
 
 namespace Webvovan\RockCms\Providers;
 
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
+use JeroenNoten\LaravelAdminLte\Http\ViewComposers\AdminLteComposer;
 
 class RockCmsServiceProvider extends ServiceProvider
 {
@@ -21,7 +23,7 @@ class RockCmsServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Factory $view)
     {
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
@@ -30,5 +32,12 @@ class RockCmsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/rock-cms.php' => config_path('rock-cms-menu.php')
         ], 'rock-cms');
+
+        $this->registerViewComposers($view);
+    }
+
+    private function registerViewComposers(Factory $view)
+    {
+        $view->composer('rock-cms::page', AdminLteComposer::class);
     }
 }
