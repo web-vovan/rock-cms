@@ -32,7 +32,7 @@
         @endif
 
         {{-- Flash Messages--}}
-        @include('admin.partials.flash-messages')
+        @include('rock-cms::partials.flash-messages')
 
         {{-- Content Wrapper --}}
         @empty($iFrameEnabled)
@@ -42,7 +42,7 @@
         @endempty
 
         {{-- Footer --}}
-        @include('admin.partials.footer')
+        @include('rock-cms::partials.footer')
 
         {{-- Right Control Sidebar --}}
         @if(config('adminlte.right_sidebar'))
