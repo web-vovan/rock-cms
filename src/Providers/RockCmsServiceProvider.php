@@ -5,6 +5,7 @@ namespace Webvovan\RockCms\Providers;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 use JeroenNoten\LaravelAdminLte\Http\ViewComposers\AdminLteComposer;
+use Webvovan\RockCms\Console\Commands\RockCmsInstallCommand;
 
 class RockCmsServiceProvider extends ServiceProvider
 {
@@ -42,6 +43,12 @@ class RockCmsServiceProvider extends ServiceProvider
         ], 'rock-cms-public');
 
         $this->registerViewComposers($view);
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                RockCmsInstallCommand::class,
+            ]);
+        }
     }
 
     private function registerViewComposers(Factory $view)
