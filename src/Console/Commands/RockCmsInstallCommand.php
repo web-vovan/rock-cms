@@ -43,7 +43,7 @@ class RockCmsInstallCommand extends Command
             mkdir(app_path('Http/Livewire'), 775);
         }
 
-        $this->info('😎 Установка Rock.Cms успешно выполнена');
+        $this->info('🤘 Установка Rock.Cms успешно выполнена');
 
         return 0;
     }
