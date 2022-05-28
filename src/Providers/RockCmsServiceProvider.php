@@ -34,6 +34,10 @@ class RockCmsServiceProvider extends ServiceProvider
         ], 'rock-cms-config');
 
         $this->publishes([
+            __DIR__.'/../resources/admin' => resource_path('views/admin')
+        ], 'rock-cms-view');
+
+        $this->publishes([
             __DIR__.'/../public' => public_path('vendor/rock-cms'),
         ], 'rock-cms-public');
 
