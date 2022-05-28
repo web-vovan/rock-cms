@@ -2,10 +2,10 @@
 
 @section('title', 'Dashboard')
 
-@section('content_header')
-    <h1>Rock.Cms - простая админка для Laravel.</h1>
+@section('content_title')
+    <h1>Rock.Cms - простая админка для Laravel</h1>
 @stop
 
 @section('content')
-
+    <p>Rock.Cms построена на Livewire + AdminLte.</p>
 @stop
