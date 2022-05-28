@@ -1,6 +1,6 @@
 <?php
 
-namespace Webvovan\RockCms\Http\Livewire\Partials;
+namespace App\Http\Livewire\RockCms\Partials;
 
 use Livewire\Component;
 
@@ -15,7 +15,7 @@ class ResourceButtons extends Component
 
     public function render()
     {
-        return view('livewire.partials.resource-buttons')
+        return view('livewire.rock-cms.partials.resource-buttons')
             ->with([
                 'buttons' => $this->buttons
             ]);
