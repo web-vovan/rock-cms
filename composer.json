@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Webvovan\\RockCms\\": "src"
+            "WebVovan\\RockCms\\": "src"
         }
     },
     "extra": {
