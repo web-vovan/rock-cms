@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use JeroenNoten\LaravelAdminLte\Http\ViewComposers\AdminLteComposer;
 use Livewire\Livewire;
 use WebVovan\RockCms\Console\Commands\RockCmsInstallCommand;
-use WebVovan\RockCms\Http\Livewire\RockCms\Partials\ResourceButtons;
+use WebVovan\RockCms\Http\Livewire\Partials\ResourceButtons;
 
 class RockCmsServiceProvider extends ServiceProvider
 {
