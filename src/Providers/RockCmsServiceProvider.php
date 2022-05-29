@@ -5,7 +5,9 @@ namespace Webvovan\RockCms\Providers;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 use JeroenNoten\LaravelAdminLte\Http\ViewComposers\AdminLteComposer;
+use Livewire\Livewire;
 use Webvovan\RockCms\Console\Commands\RockCmsInstallCommand;
+use Webvovan\RockCms\Http\Livewire\RockCms\Partials\ResourceButtons;
 
 class RockCmsServiceProvider extends ServiceProvider
 {
@@ -45,6 +47,7 @@ class RockCmsServiceProvider extends ServiceProvider
         ], 'rock-cms-public');
 
         $this->registerViewComposers($view);
+        $this->registerLivewireComponents();
 
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -56,5 +59,10 @@ class RockCmsServiceProvider extends ServiceProvider
     private function registerViewComposers(Factory $view)
     {
         $view->composer('rock-cms::page', AdminLteComposer::class);
+    }
+
+    private function registerLivewireComponents()
+    {
+        Livewire::component('resource-buttons', ResourceButtons::class);
     }
 }
