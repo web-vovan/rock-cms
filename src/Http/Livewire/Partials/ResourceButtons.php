@@ -15,7 +15,7 @@ class ResourceButtons extends Component
 
     public function render()
     {
-        return view('rock-cms::partials.resource-buttons')
+        return view('rock-cms::livewire.partials.resource-buttons')
             ->with([
                 'buttons' => $this->buttons
             ]);
