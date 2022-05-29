@@ -1,6 +1,6 @@
 <?php
 
-namespace Webvovan\RockCms\Http\Controllers;
+namespace WebVovan\RockCms\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

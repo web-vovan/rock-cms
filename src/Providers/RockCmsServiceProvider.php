@@ -1,13 +1,13 @@
 <?php
 
-namespace Webvovan\RockCms\Providers;
+namespace WebVovan\RockCms\Providers;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\ServiceProvider;
 use JeroenNoten\LaravelAdminLte\Http\ViewComposers\AdminLteComposer;
 use Livewire\Livewire;
-use Webvovan\RockCms\Console\Commands\RockCmsInstallCommand;
-use Webvovan\RockCms\Http\Livewire\RockCms\Partials\ResourceButtons;
+use WebVovan\RockCms\Console\Commands\RockCmsInstallCommand;
+use WebVovan\RockCms\Http\Livewire\RockCms\Partials\ResourceButtons;
 
 class RockCmsServiceProvider extends ServiceProvider
 {

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webvovan\RockCms\Http\Controllers\AuthController;
+use WebVovan\RockCms\Http\Controllers\AuthController;
 
 Route::middleware(['web'])->group(function() {
     Route::middleware(['auth'])->get('/admin', function() {

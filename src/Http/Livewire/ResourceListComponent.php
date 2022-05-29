@@ -1,6 +1,6 @@
 <?php
 
-namespace Webvovan\RockCms\Http\Livewire;
+namespace WebVovan\RockCms\Http\Livewire;
 
 use Illuminate\Http\RedirectResponse;
 use Livewire\Component;

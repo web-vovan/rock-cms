@@ -1,6 +1,6 @@
 <?php
 
-namespace Webvovan\RockCms\Console\Commands;
+namespace WebVovan\RockCms\Console\Commands;
 
 use Illuminate\Console\Command;
 

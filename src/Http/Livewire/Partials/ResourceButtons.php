@@ -1,6 +1,6 @@
 <?php
 
-namespace Webvovan\RockCms\Http\Livewire\RockCms\Partials;
+namespace WebVovan\RockCms\Http\Livewire\RockCms\Partials;
 
 use Livewire\Component;
 
