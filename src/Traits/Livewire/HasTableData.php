@@ -1,6 +1,6 @@
 <?php
 
-namespace Webvovan\RockCms\Traits\Livewire;
+namespace WebVovan\RockCms\Traits\Livewire;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;

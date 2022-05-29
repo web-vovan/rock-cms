@@ -1,6 +1,6 @@
 <?php
 
-namespace Webvovan\RockCms\Traits\Livewire;
+namespace WebVovan\RockCms\Traits\Livewire;
 
 trait HasSortable
 {
