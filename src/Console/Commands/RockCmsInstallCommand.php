@@ -28,10 +28,6 @@ class RockCmsInstallCommand extends Command
     public function handle()
     {
         $this->call('vendor:publish', [
-            '--tag' => 'rock-cms-config'
-        ]);
-
-        $this->call('vendor:publish', [
             '--tag' => 'rock-cms-view'
         ]);
 
@@ -43,6 +39,8 @@ class RockCmsInstallCommand extends Command
             '--provider' => 'Spatie\MediaLibrary\MediaLibraryServiceProvider',
             '--tag' => 'migrations',
         ]);
+
+        $this->call('adminlte:install');
 
         $this->call('adminlte:plugins', [
             'operation' => 'install',
