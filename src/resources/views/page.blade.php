@@ -3,13 +3,9 @@
 @inject('layoutHelper', 'JeroenNoten\LaravelAdminLte\Helpers\LayoutHelper')
 
 @section('adminlte_css')
+    <link rel="stylesheet" href="{{ asset('vendor/rock-cms/app.css') }}">
     @stack('css')
     @yield('css')
-@stop
-
-@section('adminlte_css_pre')
-    <link rel="stylesheet" href="{{ asset('vendor/rock-cms/css/app.css') }}">
-    <script src="{{ asset('vendor/rock-cms/js/app.js') }}"></script>
 @stop
 
 @section('classes_body', $layoutHelper->makeBodyClasses())
@@ -55,4 +51,5 @@
 @section('adminlte_js')
     @stack('js')
     @yield('js')
+    <script src="{{ asset('vendor/rock-cms/app.js') }}"></script>
 @stop
