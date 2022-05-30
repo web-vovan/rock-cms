@@ -51,7 +51,7 @@ class RockCmsUpdateCommand extends Command
             '--force' => true
         ]);
 
-        $this->info('🤘 Обновление Rock.Cms успешно выполнена');
+        $this->info('🤘 Обновление Rock.Cms успешно выполнено');
 
         return 0;
     }

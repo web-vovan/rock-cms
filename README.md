@@ -1,1 +1,1 @@
-rock.cms - CMS для Laravel на основе Livewire
+🤘 Rock.Cms - админ-панель для Laravel

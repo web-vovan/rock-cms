@@ -22,8 +22,6 @@
         $(() => {
             let usrCfg = {};
 
-            console.log(usrCfg);
-
             usrCfg.toolbar = [
                 ['style', ['style']],
                 ['style', ['bold', 'italic', 'underline', 'clear']],
