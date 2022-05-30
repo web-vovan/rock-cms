@@ -41,7 +41,8 @@ class RockCmsInstallCommand extends Command
 
         $this->call('adminlte:plugins', [
             'install' => true,
-            '--plugin' => 'summernote'
+            '--plugin' => ['summernote'],
+            '--force' => true
         ]);
 
         if (is_dir(app_path('Http/Livewire')) === false) {
