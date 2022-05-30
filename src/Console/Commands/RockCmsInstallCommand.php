@@ -39,6 +39,11 @@ class RockCmsInstallCommand extends Command
             '--tag' => 'rock-cms-public'
         ]);
 
+        $this->call('vendor:publish', [
+            '--provider' => 'Spatie\MediaLibrary\MediaLibraryServiceProvider',
+            '--tag' => 'migrations',
+        ]);
+
         $this->call('adminlte:plugins', [
             'operation' => 'install',
             '--plugin' => ['summernote'],
