@@ -46,7 +46,7 @@ class RockCmsInstallCommand extends Command
 
         $this->call('adminlte:plugins', [
             'operation' => 'install',
-            '--plugin' => ['summernote'],
+            '--plugin' => ['summernote', 'daterangepicker'],
             '--force' => true
         ]);
 
