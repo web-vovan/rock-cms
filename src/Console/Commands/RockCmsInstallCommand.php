@@ -39,7 +39,7 @@ class RockCmsInstallCommand extends Command
             '--tag' => 'rock-cms-public'
         ]);
 
-        $this->call('adminlte:plugins install', [
+        $this->call('adminlte:plugins', [
             'install',
             '--plugin' => 'summernote'
         ]);
