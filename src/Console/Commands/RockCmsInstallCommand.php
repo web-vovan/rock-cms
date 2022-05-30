@@ -40,7 +40,7 @@ class RockCmsInstallCommand extends Command
         ]);
 
         $this->call('adminlte:plugins', [
-            'install' => true,
+            'operation' => 'install',
             '--plugin' => ['summernote'],
             '--force' => true
         ]);
