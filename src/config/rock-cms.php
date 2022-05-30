@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'text_footer' => '<strong>Rock.Cms © {{ now()->year }}</strong>. - Админ-панель для Laravel'
+    'text_footer' => '<strong>Rock.Cms</strong> - Админ-панель для Laravel',
 ];

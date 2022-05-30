@@ -5,7 +5,7 @@ use WebVovan\RockCms\Http\Controllers\AuthController;
 
 Route::middleware(['web'])->group(function() {
     Route::middleware(['auth'])->get('/admin', function() {
-        return view('rock-cms::admin.index');
+        return view('admin.index');
     })->name('home');
 
     Route::middleware(['auth'])->post('/admin/logout', [AuthController::class, 'logout']);
