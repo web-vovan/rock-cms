@@ -23,6 +23,9 @@
             "WebVovan\\RockCms\\": "src"
         }
     },
+    "files": [
+        "src/helpers.php"
+    ],
     "extra": {
         "laravel": {
             "providers": [
