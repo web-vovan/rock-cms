@@ -39,6 +39,10 @@ class RockCmsInstallCommand extends Command
             '--tag' => 'rock-cms-public'
         ]);
 
+        $this->call('adminlte:plugins install', [
+            '--plugin' => 'summernote'
+        ]);
+
         if (is_dir(app_path('Http/Livewire')) === false) {
             mkdir(app_path('Http/Livewire'), 775);
         }
