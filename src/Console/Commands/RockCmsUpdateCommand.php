@@ -40,7 +40,7 @@ class RockCmsUpdateCommand extends Command
             '--force',
         ]);
 
-        $this->call('adminlte:install');
+        $this->call('adminlte:update');
 
         $this->call('adminlte:plugins', [
             'operation' => 'install',
