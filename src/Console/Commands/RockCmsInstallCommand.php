@@ -40,7 +40,15 @@ class RockCmsInstallCommand extends Command
             '--tag' => 'migrations',
         ]);
 
+        $this->call('vendor:publish', [
+            '--tag' => 'breadcrumbs-config',
+        ]);
+
         $this->call('adminlte:install');
+
+        $this->call('adminlte:install', [
+            '--only' => 'auth_views',
+        ]);
 
         $this->call('adminlte:plugins', [
             'operation' => 'install',
