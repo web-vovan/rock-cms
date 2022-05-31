@@ -47,7 +47,7 @@ class RockCmsInstallCommand extends Command
         $this->call('adminlte:install');
 
         $this->call('adminlte:install', [
-            '--only' => 'auth_views',
+            '--only' => ['auth_views'],
         ]);
 
         $this->call('adminlte:plugins', [
