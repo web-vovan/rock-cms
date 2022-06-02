@@ -37,7 +37,7 @@ class RockCmsUpdateCommand extends Command
 
         $this->call('vendor:publish', [
             '--tag' => 'rock-cms-public',
-            '--force',
+            '--force' => true,
         ]);
 
         $this->call('adminlte:update');

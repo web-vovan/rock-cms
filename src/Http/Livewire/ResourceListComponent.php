@@ -135,6 +135,7 @@ abstract class ResourceListComponent extends Component
         $this->resourceClass::destroy($this->selectList);
 
         $this->checkSelectAll = false;
+        $this->selectList = [];
         $this->dispatchBrowserEvent('resources-delete');
     }
 
