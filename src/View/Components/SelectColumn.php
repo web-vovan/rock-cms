@@ -2,29 +2,29 @@
 
 namespace WebVovan\RockCms\View\Components;
 
-use App\Http\Livewire\ResourceList;
+use WebVovan\RockCms\Http\Livewire\ResourceListComponent;
 use Illuminate\View\Component;
 
 class SelectColumn extends Component
 {
     public string $classList;
     public bool $sortable;
-    public ResourceList $resourceList;
+    public ResourceListComponent $resourceListComponent;
 
     /**
      * Create a new component instance.
-     *
+     * @param ResourceListComponent $resourceListComponent
      */
-    public function __construct(ResourceList $resourceList)
+    public function __construct(ResourceListComponent $resourceListComponent)
     {
         $this->classList = '';
         $this->sortable = false;
-        $this->resourceList = $resourceList;
+        $this->resourceListComponent = $resourceListComponent;
     }
 
-    public static function make(ResourceList $resourceList)
+    public static function make(ResourceListComponent $resourceListComponent)
     {
-        return new static($resourceList);
+        return new static($resourceListComponent);
     }
 
     public function addClass(string $class)
@@ -35,7 +35,7 @@ class SelectColumn extends Component
 
     public function getLabel(): string
     {
-        $checked = $this->resourceList->checkSelectAll ? 'checked' : '';
+        $checked = $this->resourceListComponent->checkSelectAll ? 'checked' : '';
         return '<input type="checkbox" wire:click="selectAllResources" '. $checked .'>';
     }
 
