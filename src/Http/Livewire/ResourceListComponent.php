@@ -2,17 +2,69 @@
 
 namespace WebVovan\RockCms\Http\Livewire;
 
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\RedirectResponse;
 use Livewire\Component;
 use Livewire\Redirector;
+use Livewire\WithPagination;
 
-abstract class ResourceListComponent extends Component
+abstract class ResourceList extends Component
 {
+    use WithPagination;
+
+    public bool $activeEditButton = true;
+    public bool $activeDeleteButton = true;
+
+    protected string $paginationTheme = 'bootstrap';
+
     /**
-     * Метод запускается один раз при монтировании компонента
+     * Поля для сортировки по умолчанию
      *
+     * @var string
      */
-    abstract public function init();
+    public string $sortBy;
+
+    /**
+     * Направление для сортировки по умолчанию
+     *
+     * @var string
+     */
+    public string $sortDirection;
+
+    /**
+     * Поля, доступные для поиска
+     *
+     * @var array
+     */
+    public array $search = [];
+
+    /**
+     * Слово для поиска
+     *
+     * @var string
+     */
+    public string $searchWord = '';
+
+    /**
+     * Количество ресурсов на странице
+     *
+     * @var int
+     */
+    public int $perPage = 10;
+
+    /**
+     * Выбранные элементы в списке ресурсов
+     *
+     * @var array
+     */
+    public array $selectList = [];
+
+    /**
+     * Метка, показывающая выбор всех ресурсов
+     *
+     * @var bool
+     */
+    public bool $checkSelectAll = false;
 
     /**
      * Стандартные слушатели событий
@@ -66,22 +118,32 @@ abstract class ResourceListComponent extends Component
      * Удаление ресурса
      *
      * @param int $id
-     * @return Redirector|RedirectResponse
      */
-    public function deleteResource(int $id): Redirector|RedirectResponse
+    public function deleteResource(int $id)
     {
         $this->resourceClass::destroy($id);
 
-        session()->flash('resource-delete');
+        $this->dispatchBrowserEvent('resource-delete');
+    }
 
-        return redirect(request()->header('Referer'));
+    /**
+     * Удаление списка ресурсов
+     *
+     */
+    public function deleteListResources()
+    {
+        $this->resourceClass::destroy($this->selectList);
+
+        $this->checkSelectAll = false;
+        $this->dispatchBrowserEvent('resource-delete');
     }
 
     public function mount()
     {
-        $this->addEventListeners();
+        $this->sortBy = $this->sortBy ?? 'id';
+        $this->sortDirection = $this->sortDirection ?? 'desc';
 
-        $this->init();
+        $this->addEventListeners();
     }
 
     public function addEventListeners()
@@ -94,5 +156,79 @@ abstract class ResourceListComponent extends Component
     public function hydrate()
     {
         $this->addEventListeners();
+    }
+
+    /**
+     * Установка сортировки
+     *
+     * @param string $sortBy Поле сортировки
+     * @param string $sortDirection Направление сортировки
+     */
+    public function setOrder(string $sortBy, string $sortDirection)
+    {
+        $this->sortBy = $sortBy;
+        $this->sortDirection = $sortDirection;
+    }
+
+    /**
+     * Добавление/удаление ресурса в список для массовой работы
+     *
+     * @param int $id
+     */
+    public function addItemInSelectList(int $id)
+    {
+        $this->checkSelectAll = false;
+
+        $i = array_search($id, $this->selectList);
+
+        if ($i !== false) {
+            unset($this->selectList[$i]);
+        } else {
+            $this->selectList[] = $id;
+        }
+    }
+
+    /**
+     * Выбор всех ресурсов на странице
+     */
+    public function selectAllResources()
+    {
+        if ($this->checkSelectAll) {
+            $this->checkSelectAll = false;
+            $this->selectList = [];
+
+        } else {
+            $this->checkSelectAll = true;
+            $this->selectList = array_map(fn($item) => $item->id, $this->getData()->items());
+        }
+    }
+
+    /**
+     * Данные для вывода
+     *
+     * @return mixed
+     */
+    public function getData(): Paginator
+    {
+        $builder = $this->resourceClass::query();
+
+        $builder->orderBy($this->sortBy, $this->sortDirection);
+
+        if ($this->searchWord && count($this->search)) {
+            foreach ($this->search as $field) {
+                $builder->orWhere($field, 'like', '%' . $this->searchWord . '%');
+            }
+        }
+
+        return $builder->paginate($this->perPage);
+    }
+
+    public function render()
+    {
+        return view('rock-cms::livewire.components.resource-list', [
+            'data' => $this->getData(),
+            'columns' => $this->columns(),
+            'resource' => $this,
+        ]);
     }
 }

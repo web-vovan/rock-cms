@@ -49,7 +49,7 @@
 @stop
 
 @section('adminlte_js')
+    <script src="{{ asset('vendor/rock-cms/app.js') }}"></script>
     @stack('js')
     @yield('js')
-    <script src="{{ asset('vendor/rock-cms/app.js') }}"></script>
 @stop
