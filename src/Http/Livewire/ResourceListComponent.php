@@ -205,20 +205,45 @@ abstract class ResourceListComponent extends Component
     }
 
     /**
+     * Настройка обработчиков для сортировки полей
+     */
+    public function setSortHandlers(): array
+    {
+        return [];
+    }
+
+    /**
+     * Настройка обработчиков для поиска по полям
+     */
+    public function setSearchHandlers(): array
+    {
+        return [];
+    }
+
+    /**
      * Данные для вывода
      *
      * @return mixed
      */
     public function getData(): Paginator
     {
+        $sortHandlers = $this->setSortHandlers();
+        $searchHandlers = $this->setSearchHandlers();
+
         $builder = $this->resourceClass::query();
 
-        $builder->orderBy($this->sortBy, $this->sortDirection);
+        array_key_exists($this->sortBy, $sortHandlers)
+            ? $sortHandlers[$this->sortBy]($builder, $this->sortBy, $this->sortDirection)
+            : $builder->orderBy($this->sortBy, $this->sortDirection);
 
         if ($this->searchWord && count($this->search)) {
             foreach ($this->search as $field) {
-                $builder->orWhere($field, 'like', '%' . $this->searchWord . '%');
+                array_key_exists($field, $searchHandlers)
+                    ? $searchHandlers[$field]($builder, $field, $this->searchWord)
+                    : $builder->orWhere($field, 'like', '%' . $this->searchWord . '%');
             }
+
+            $this->resetPage();
         }
 
         return $builder->paginate($this->perPage);

@@ -14,6 +14,8 @@ class EditLinkColumn extends Column
         return view('rock-cms::components.columns.edit-link-column')->with([
             'field' => $this->field,
             'label' => $this->label,
+            'classList' => $this->classList,
+            'sortable' => $this->sortable,
         ]);
     }
 }
