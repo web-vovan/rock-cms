@@ -8,7 +8,7 @@ use Livewire\Component;
 use Livewire\Redirector;
 use Livewire\WithPagination;
 
-abstract class ResourceList extends Component
+abstract class ResourceListComponent extends Component
 {
     use WithPagination;
 
