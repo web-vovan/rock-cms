@@ -23,8 +23,9 @@
             let usrCfg = {};
 
             usrCfg.toolbar = [
+                ['cleaner',['cleaner']],
                 ['style', ['style']],
-                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['style', ['bold', 'italic', 'underline']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['table', ['table']],
                 ['view', ['codeview']]
