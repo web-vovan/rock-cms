@@ -2,7 +2,7 @@
     <label class="col-sm-2 col-form-label">{{ $title }}</label>
     <div class="col-sm-10">
         @if ($model)
-            <div class="d-flex justify-content-start">
+            <div class="d-flex flex-wrap justify-content-start">
                 @foreach($model as $key => $image)
                     <div class="card text-center media-card mr-2">
                         <div class="card-body d-flex align-items-center">
