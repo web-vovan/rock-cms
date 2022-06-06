@@ -17,7 +17,7 @@
                 </div>
             </div>
         @endif
-        <input type="file" wire:model="{{ $field }}" class="d-none" id="{{ $field }}">
+        <input type="file" wire:model="{{ $field }}" class="d-none" accept="image/*" id="{{ $field }}">
         @if ($model)
             <label for="{{ $field }}" type="button" class="btn btn-primary font-weight-normal mb-0">Заменить</label>
         @else
