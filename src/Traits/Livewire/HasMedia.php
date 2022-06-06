@@ -88,6 +88,7 @@ trait HasMedia
             $this->$field = null;
         } else {
             unset($this->$field[$key]);
+            $this->$field = array_values($this->$field);
         }
     }
 

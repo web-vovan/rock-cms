@@ -6,12 +6,10 @@
                 <div class="card text-center media-card mr-2">
                     <div class="card-body d-flex align-items-center">
                         <div>
-                            <img src="{{ getMediaLink($model) }}" class="img-thumbnail rounded">
+                            <a href="{{ getMediaLink($model) }}" data-toggle="lightbox" target="_blank"><img src="{{ getMediaLink($model) }}" class="img-thumbnail rounded"></a>
                         </div>
                     </div>
                     <div class="card-footer text-muted">
-                        <a href="{{ getMediaLink($model) }}" target="_blank" class="btn btn-secondary btn-sm"><i class="fas fa-eye" aria-hidden="true"></i></a>
-
                         <button type="button" wire:click="deleteMedia('{{ $field }}')" class="btn btn-danger btn-sm"><i class="fas fa-trash" aria-hidden="true"></i></button>
                     </div>
                 </div>
