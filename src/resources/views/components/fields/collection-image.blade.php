@@ -7,12 +7,10 @@
                     <div class="card text-center media-card mr-2" wire:sortable.item="{{$field}}:{{ $loop->index }}" wire:key="{{$field}}-{{ $loop->index }}">
                         <div class="card-body d-flex align-items-center">
                             <div>
-                                <img src="{{ getMediaLink($image) }}" class="img-thumbnail rounded">
+                                <a href="{{ getMediaLink($image) }}" data-toggle="lightbox" target="_blank"><img src="{{ getMediaLink($image) }}" class="img-thumbnail rounded"></a>
                             </div>
                         </div>
                         <div class="card-footer text-muted">
-                            <a href="{{ getMediaLink($image) }}" target="_blank" class="btn btn-secondary btn-sm"><i class="fas fa-eye" aria-hidden="true"></i></a>
-
                             <button type="button" wire:click="deleteMedia('{{ $field }}', {{ $key }})" class="btn btn-danger btn-sm"><i class="fas fa-trash" aria-hidden="true"></i></button>
                         </div>
                     </div>
