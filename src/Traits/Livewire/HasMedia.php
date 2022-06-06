@@ -58,10 +58,19 @@ trait HasMedia
 
         // добавляем новые картинки
         foreach ($medias as $key => $image) {
+            if (is_array($image)) {
+                if ($image['order_column'] !== $key) {
+                    $media = Media::find($image['id']);
+                    $media->order_column = $key;
+                    $media->save();
+                }
+            }
+
             if ($image instanceof TemporaryUploadedFile) {
                 $this->$collectionName[$key] = $model
                     ->addMedia($image->getRealPath())
                     ->usingName($image->getClientOriginalName())
+                    ->setOrder($key)
                     ->toMediaCollection($collectionName);
             }
         }
@@ -80,6 +89,21 @@ trait HasMedia
         } else {
             unset($this->$field[$key]);
         }
+    }
+
+    /**
+     * Сортировка изображений
+     *
+     * @param $data
+     */
+    public function changeOrderMedia($data)
+    {
+        $field = explode(':', $data[0]['value'])[0];
+
+        $this->$field = array_map(function($item) use ($data, $field) {
+            $index = explode(':', $item['value'])[1];
+            return $this->$field[(int) $index];
+        }, $data);
     }
 
     /**

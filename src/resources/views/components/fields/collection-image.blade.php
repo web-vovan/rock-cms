@@ -2,9 +2,9 @@
     <label class="col-sm-2 col-form-label">{{ $title }}</label>
     <div class="col-sm-10">
         @if ($model)
-            <div class="d-flex flex-wrap justify-content-start">
+            <div class="d-flex flex-wrap justify-content-start" wire:sortable="changeOrderMedia">
                 @foreach($model as $key => $image)
-                    <div class="card text-center media-card mr-2">
+                    <div class="card text-center media-card mr-2" wire:sortable.item="{{$field}}:{{ $loop->index }}" wire:key="{{$field}}-{{ $loop->index }}">
                         <div class="card-body d-flex align-items-center">
                             <div>
                                 <img src="{{ getMediaLink($image) }}" class="img-thumbnail rounded">
