@@ -51,3 +51,10 @@ window.addEventListener('error-validation', function (event) {
         close: false
     });
 });
+
+$(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox({
+        alwaysShowClose: true,
+    });
+});
