@@ -1,6 +1,6 @@
 <?php
 
-namespace WebVovan\RockCm\Rules;
+namespace WebVovan\RockCms\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Livewire\TemporaryUploadedFile;
