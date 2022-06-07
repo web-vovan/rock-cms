@@ -31,7 +31,7 @@ if (!function_exists('getMediaFileName')) {
             if ($model instanceof Spatie\MediaLibrary\MediaCollections\Models\Media) {
                 $name = $model->name;
             } else if ($model instanceof Livewire\TemporaryUploadedFile) {
-                $name = $model->getFilename();
+                $name = $model->getClientOriginalName();
             } else if (is_array($model)) {
                 $name = $model['name'];
             }
