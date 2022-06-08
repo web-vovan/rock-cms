@@ -42,3 +42,22 @@
     max-height: 300px;
     max-width: 100%;
 }
+
+.rock-multiselect {
+    position: relative;
+}
+
+.rock-multiselect .list-group {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow: auto;
+    z-index: 10;
+}
+
+.rock-multiselect.active .list-group {
+    display: block;
+}
