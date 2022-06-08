@@ -2,7 +2,7 @@
     <label class="col-sm-2 col-form-label">{{ $title }}</label>
     <div class="col-sm-10">
         <div wire:ignore class="mb-4">
-            <select id="{{ $field }}" class="chosen form-control" data-placeholder="Выберите значение">
+            <select id="{{ $selectedItemsField }}" class="chosen form-control" data-placeholder="Выберите значение">
                 <option value="0"></option>
                 @foreach($items as $key => $item)
                     <option
@@ -12,15 +12,15 @@
             </select>
         </div>
 
-        <div wire:sortable="{{ $updateMethod }}">
+        <div wire:sortable="changeOrder">
             @foreach ($selectedItems as $item)
-                <div class="input-group mb-3" wire:sortable.item="{{ $loop->index }}" wire:key="{{$field}}-{{ $loop->index }}">
+                <div class="input-group mb-3" wire:sortable.item="{{$selectedItemsField}}:{{ $loop->index }}" wire:key="{{$selectedItemsField}}-{{ $loop->index }}">
                     <div class="input-group-prepend">
                         <button class="btn btn-primary btn-sm" wire:sortable.handle="{{ $loop->index }}"><i class="fas fa-arrows-alt"></i></button>
                     </div>
                     <div class="form-control">{{ $item['title'] }}</div>
                     <div class="input-group-append">
-                        <div class="btn btn-danger btn-sm" wire:click="{{$removeMethod}}({{ $loop->index }}, '{{$field}}')"><i class="fas fa-trash"></i></div>
+                        <div class="btn btn-danger btn-sm" wire:click="removeListItem({{ $loop->index }}, '{{$selectedItemsField}}')"><i class="fas fa-trash"></i></div>
                     </div>
                 </div>
             @endforeach
@@ -30,13 +30,13 @@
 
 @push('js')
     <script>
-        let {{$field}} = $('#{{$field}}');
+        let {{$selectedItemsField}} = $('#{{$selectedItemsField}}');
 
-        {{ $field }}.chosen();
+        {{ $selectedItemsField }}.chosen();
 
-        {{ $field }}.change(function() {
-            let select = document.getElementById('{{ $field }}');
-            @this.{{ $changeMethod }}(select.value);
+        {{ $selectedItemsField }}.change(function() {
+            let select = document.getElementById('{{ $selectedItemsField }}');
+        @this.addItemInSelectedItems('{{$itemsField}}', '{{$selectedItemsField}}', select.value);
 
             select.value = null;
         })

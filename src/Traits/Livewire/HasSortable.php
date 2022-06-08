@@ -22,11 +22,26 @@ trait HasSortable
      * @param $data
      * @param $field
      */
-    public function updateOrder($data, $field)
+    public function changeOrder($data)
     {
+        $field = explode(':', $data[0]['value'])[0];
+
         $this->$field = array_map(function($item) use ($data, $field) {
-            return $this->$field[(int) $item['value']];
+            $index = explode(':', $item['value'])[1];
+            return $this->$field[(int) $index];
         }, $data);
+    }
+
+    /**
+     * Добавление элемента в список
+     *
+     * @param string $itemsField
+     * @param string $selectedItemsField
+     * @param $value
+     */
+    public function addItemInSelectedItems(string $itemsField, string $selectedItemsField, $value)
+    {
+        $this->changeSelect($this->$itemsField, $this->$selectedItemsField, $value);
     }
 
     /**
