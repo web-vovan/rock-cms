@@ -20,7 +20,7 @@
                     <option value="0"></option>
                     @foreach($items as $key => $item)
                         <option
-                            value="{{ $item['id'] }}"
+                                value="{{ $item['id'] }}"
                         >{{ $item['title'] }}</option>
                     @endforeach
                 </select>
@@ -56,6 +56,7 @@
             select.value = null;
         })
 
+        @if (isset($liveSearch))
         $('.rock-multiselect .{{$selectedItemsField}}').on('input', function(event) {
         @this.{{$liveSearch}}(event.target.value)
         })
@@ -69,5 +70,6 @@
                 $('.rock-multiselect.{{$selectedItemsField}}').removeClass('active')
             }, 500)
         })
+        @endif
     </script>
 @endpush()
