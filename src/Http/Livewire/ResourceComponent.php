@@ -105,7 +105,7 @@ abstract class ResourceComponent extends Component
                 $this->dispatchBrowserEvent('resource-update');
             }
         } catch(ValidationException $e) {
-            $this->dispatchBrowserEvent('error-validation');
+            $this->dispatchBrowserEvent('error-validation', ['message' => $e->getMessage()]);
             $this->validate();
         }
     }

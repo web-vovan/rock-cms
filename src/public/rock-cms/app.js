@@ -42,6 +42,8 @@ window.addEventListener('resources-delete', function (event) {
     });
 });
 window.addEventListener('error-validation', function (event) {
+    console.error(event.detail.message)
+
     $(document).Toasts('create', {
         body: 'Ошибка валидации',
         "class": 'bg-danger',
