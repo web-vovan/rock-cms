@@ -7,6 +7,22 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 trait HasJson
 {
     /**
+     * Добавление нового элемента в список
+     *
+     * @param string $field Поле с данными
+     * @param array $data Данные
+     */
+    public function addItemInJson(string $field, array $data)
+    {
+        $propertyAccessor = PropertyAccess::createPropertyAccessor();
+
+        $list = $propertyAccessor->getValue($this, $field);
+        $list[] = $data;
+
+        $propertyAccessor->setValue($this, $field, $list);
+    }
+
+    /**
      * Удаление элемента из списка
      *
      * @param $key
