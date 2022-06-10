@@ -2,7 +2,7 @@
     <label class="col-sm-2 col-form-label">{{ $title }}</label>
     <div class="col-sm-10">
         <div wire:sortable="changeOrderJson">
-            <div class="btn btn-primary mb-4" wire:click="{{$addMethod}}"><i class="fas fa-plus"></i> Добавить</div>
+            <div class="btn btn-primary mb-4" wire:click="addItemInJson('{{$field}}', '{{$addMethod}}')"><i class="fas fa-plus"></i> Добавить</div>
             @foreach ($items as $item)
                 <div class="card w-100" wire:sortable.item="{{$field}}:{{ $loop->index }}" wire:key="{{$field}}-{{ $loop->index }}">
                     <div class="card-header">

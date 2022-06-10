@@ -10,14 +10,14 @@ trait HasJson
      * Добавление нового элемента в список
      *
      * @param string $field Поле с данными
-     * @param array $data Данные
+     * @param string $method Метод, возвращающий структуру для нового элемента
      */
-    public function addItemInJson(string $field, array $data)
+    public function addItemInJson(string $field, string $method)
     {
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         $list = $propertyAccessor->getValue($this, $field);
-        $list[] = $data;
+        $list[] = $this->$method();
 
         $propertyAccessor->setValue($this, $field, $list);
     }
