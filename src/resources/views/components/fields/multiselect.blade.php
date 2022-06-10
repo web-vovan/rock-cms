@@ -28,7 +28,7 @@
                 </div>
             @endif
 
-            <div wire:sortable="changeOrder">
+            <div wire:sortable="changeOrderMultiselect">
                 @foreach ($selectedItems as $item)
                     <div class="input-group mb-3" wire:sortable.item="{{$selectedItemsField}}:{{ $loop->index }}" wire:key="{{$selectedItemsField}}-{{ $loop->index }}">
                         <div class="input-group-prepend">
@@ -36,7 +36,7 @@
                         </div>
                         <div class="form-control">{{ $item['title'] }}</div>
                         <div class="input-group-append">
-                            <div class="btn btn-danger btn-sm" wire:click="removeListItem({{ $loop->index }}, '{{$selectedItemsField}}')"><i class="fas fa-trash"></i></div>
+                            <div class="btn btn-danger btn-sm" wire:click="removeItemMultiselect({{ $loop->index }}, '{{$selectedItemsField}}')"><i class="fas fa-trash"></i></div>
                         </div>
                     </div>
                 @endforeach
