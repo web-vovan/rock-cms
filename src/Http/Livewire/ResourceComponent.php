@@ -3,9 +3,11 @@
 namespace WebVovan\RockCms\Http\Livewire;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Livewire\Redirector;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 abstract class ResourceComponent extends Component
 {
@@ -67,6 +69,20 @@ abstract class ResourceComponent extends Component
      * @var bool
      */
     public bool $isNewResource;
+
+    /**
+     * Поля для источника слага
+     *
+     * @var string
+     */
+    public string $fieldSourceSlug = '';
+
+    /**
+     * Поле слага
+     *
+     * @var string
+     */
+    public string $fieldSlug = '';
 
     /**
      * Создание ресурса
@@ -150,8 +166,9 @@ abstract class ResourceComponent extends Component
      */
     public function updated($propertyName)
     {
-
         $this->validateOnly($propertyName);
+
+        $this->afterUpdated($propertyName);
     }
 
     public function mount()
@@ -171,5 +188,47 @@ abstract class ResourceComponent extends Component
     public function hydrate()
     {
         $this->addEventListeners();
+    }
+
+    /**
+     * Запускается после обновления свойства ресурса
+     *
+     * @param $propertyName
+     */
+    public function afterUpdated(string $propertyName)
+    {
+        $this->setSlug($propertyName);
+    }
+
+    /**
+     * Генерация слага
+     *
+     * @param string $propertyName
+     */
+    public function setSlug(string $propertyName): void
+    {
+        $propertyAccessor = PropertyAccess::createPropertyAccessor();
+
+        if ($this->fieldSourceSlug === '' || $this->fieldSlug === '') {
+            return;
+        }
+
+        if ($propertyName === $this->fieldSourceSlug) {
+            $s = Str::of($this->fieldSlug)->explode('.')->last();
+
+            if ($this->resource->getOriginal($s) === null) {
+                $newSlug = Str::slug($propertyAccessor->getValue($this, $this->fieldSourceSlug));
+                $propertyAccessor->setValue($this, $this->fieldSlug, $newSlug);
+            }
+        }
+
+        if ($propertyName === $this->fieldSlug) {
+            $slugValue = $propertyAccessor->getValue($this, $this->fieldSlug);
+            $newSlug = Str::slug($propertyAccessor->getValue($this, $this->fieldSourceSlug));
+
+            if ($slugValue === '') {
+                $propertyAccessor->setValue($this, $this->fieldSlug, $newSlug);
+            }
+        }
     }
 }
