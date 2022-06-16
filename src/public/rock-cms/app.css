@@ -3,6 +3,10 @@
     height: 200px;
 }
 
+.media-card .card-body .img-thumbnail {
+    max-height: calc(200px - 2.5rem);
+}
+
 .card-collapse .btn .fa-minus {
     display: none;
 }

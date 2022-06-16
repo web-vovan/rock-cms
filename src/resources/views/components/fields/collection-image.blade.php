@@ -5,10 +5,10 @@
             <div class="d-flex flex-wrap justify-content-start" wire:sortable="changeOrderMedia">
                 @foreach($model as $key => $image)
                     <div class="card text-center media-card mr-2" wire:sortable.item="{{$field}}:{{ $loop->index }}" wire:key="{{$field}}-{{ $loop->index }}">
-                        <div class="card-body d-flex align-items-center">
-                            <div>
-                                <a href="{{ getMediaLink($image) }}" data-toggle="lightbox" target="_blank"><img src="{{ getMediaLink($image) }}" class="img-thumbnail rounded"></a>
-                            </div>
+                        <div class="card-body d-flex align-items-center justify-content-center">
+                            <a href="{{ getMediaLink($image) }}" data-toggle="lightbox" target="_blank">
+                                <img src="{{ getMediaLink($image) }}" class="img-thumbnail rounded">
+                            </a>
                         </div>
                         <div class="card-footer text-muted">
                             <button type="button" wire:click="deleteMedia('{{ $field }}', {{ $key }})" class="btn btn-danger btn-sm"><i class="fas fa-trash" aria-hidden="true"></i></button>
