@@ -1,5 +1,11 @@
 <div>
     <div class="btn-group">
+        @if ($resource->activeShowButton)
+            <a class="btn btn-default text-secondary" href="{{route($resource->nameRouteResourceShow, $item->id)}}">
+                <i class="fa fa-fw fa-eye"></i>
+            </a>
+        @endif
+
         @if ($resource->activeEditButton)
             <a class="btn btn-default text-secondary" href="{{route($resource->nameRouteResourceEdit, $item->id)}}">
                 <i class="fa fa-fw fa-pen"></i>

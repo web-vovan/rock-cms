@@ -64,6 +64,13 @@ abstract class ResourceComponent extends Component
     public string $nameRouteResourceCreate;
 
     /**
+     * Именованный маршрут просмотра ресурса
+     *
+     * @var string
+     */
+    public string $nameRouteResourceShow;
+
+    /**
      * Ресурс является новым
      *
      * @var bool

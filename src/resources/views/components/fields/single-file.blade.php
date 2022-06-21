@@ -12,16 +12,29 @@
                     <div class="card-footer text-muted">
                         <a href="{{ getMediaLink($model) }}" target="_blank" class="btn btn-secondary btn-sm"><i class="fas fa-eye" aria-hidden="true"></i></a>
 
-                        <button type="button" wire:click="deleteMedia('{{ $field }}')" class="btn btn-danger btn-sm"><i class="fas fa-trash" aria-hidden="true"></i></button>
+                        @if (isset($readonly) === false)
+                            <button type="button"
+                                    wire:click="deleteMedia('{{ $field }}')"
+                                    class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash" aria-hidden="true"></i>
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>
         @endif
-        <input type="file" wire:model="{{ $field }}" class="d-none" id="{{ $field }}">
-        @if ($model)
-            <label for="{{ $field }}" type="button" class="btn btn-primary font-weight-normal mb-0">Заменить</label>
-        @else
-            <label for="{{ $field }}" type="button" class="btn btn-primary font-weight-normal mb-0">Выберите файл</label>
+
+        @if (isset($readonly) === false)
+            <input type="file" wire:model="{{ $field }}" class="d-none" id="{{ $field }}">
+            @if ($model)
+                <label for="{{ $field }}" type="button" class="btn btn-primary font-weight-normal mb-0">Заменить</label>
+            @else
+                <label for="{{ $field }}" type="button" class="btn btn-primary font-weight-normal mb-0">Выберите файл</label>
+            @endif
+        @endif
+
+        @if (isset($readonly) && $model === null)
+            -
         @endif
     </div>
 </div>

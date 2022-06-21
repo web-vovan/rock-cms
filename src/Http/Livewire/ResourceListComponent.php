@@ -12,8 +12,26 @@ abstract class ResourceListComponent extends Component
 {
     use WithPagination;
 
+    /**
+     * Кнопка редактирования ресурса
+     *
+     * @var bool
+     */
     public bool $activeEditButton = true;
+
+    /**
+     * Кнопка удаления ресурса
+     *
+     * @var bool
+     */
     public bool $activeDeleteButton = true;
+
+    /**
+     * Кнопка просмотра ресурса
+     *
+     * @var bool
+     */
+    public bool $activeShowButton = false;
 
     protected string $paginationTheme = 'bootstrap';
 
@@ -103,6 +121,13 @@ abstract class ResourceListComponent extends Component
      * @var string
      */
     public string $nameRouteResourceCreate;
+
+    /**
+     * Именованный маршрут просмотра ресурса
+     *
+     * @var string
+     */
+    public string $nameRouteResourceShow;
 
     /**
      * Создание ресурса
