@@ -48,7 +48,7 @@
                 usrCfg['placeholder'] = "{{ $attributes['placeholder'] }}";
             @endisset
 
-            usrCfg['popover'] = {
+                usrCfg['popover'] = {
                 image: [
                     ['custom', ['imageAttributes']],
                     ['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
@@ -66,9 +66,12 @@
             usrCfg['lang'] = 'ru-RU';
 
             // Initialize the plugin.
-            $('#{{ $fieldId }}').summernote(usrCfg);
+            @if(isset($readonly))
+                $('#{{ $fieldId }}').summernote('disable');
+            @else
+                $('#{{ $fieldId }}').summernote(usrCfg);
+            @endif
         })
-
     </script>
 @empty($ajaxEditor)
     @endpush
