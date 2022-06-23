@@ -10,7 +10,7 @@ abstract class SelectFilter extends ResourceFilter
 
     public function render()
     {
-        return view('filters.select-filter', [
+        return view('rock-cms::livewire.filters.select-filter', [
             'field' => $this->field,
             'label' => $this->label,
             'data' => $this->data,

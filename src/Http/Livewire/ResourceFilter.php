@@ -21,7 +21,7 @@ abstract class ResourceFilter
 
     public function apply()
     {
-        if ($this->value) {
+        if ($this->value && $this->value !== 'null') {
             $this->builder();
         }
     }
