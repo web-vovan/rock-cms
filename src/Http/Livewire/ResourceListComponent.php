@@ -64,6 +64,20 @@ abstract class ResourceListComponent extends Component
     public string $searchWord = '';
 
     /**
+     * Фильтры
+     *
+     * @var array
+     */
+    public array $filters = [];
+
+    /**
+     * Выбранные значения в фильтре
+     *
+     * @var array
+     */
+    public array $filterFields = [];
+
+    /**
      * Количество ресурсов на странице
      *
      * @var int
@@ -246,6 +260,25 @@ abstract class ResourceListComponent extends Component
     }
 
     /**
+     * Установка значения для фильтра
+     *
+     * @param $field
+     * @param $value
+     */
+    public function setFilter($field, $value)
+    {
+        $this->filterFields[$field] = $value;
+    }
+
+    /**
+     * Очистка фильтра
+     */
+    public function clearFilter()
+    {
+        $this->filterFields = [];
+    }
+
+    /**
      * Данные для вывода
      *
      * @return mixed
@@ -267,8 +300,10 @@ abstract class ResourceListComponent extends Component
                     ? $searchHandlers[$field]($builder, $field, $this->searchWord)
                     : $builder->orWhere($field, 'like', '%' . $this->searchWord . '%');
             }
+        }
 
-            $this->resetPage();
+        foreach ($this->filters as $filter) {
+            (new $filter($builder, $this->filterFields))->apply();
         }
 
         return $builder->paginate($this->perPage);
