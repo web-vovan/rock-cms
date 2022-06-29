@@ -75,3 +75,23 @@ if (!function_exists('replaceBase64Image')) {
     }
 }
 
+/**
+ * Получение картинки из base64
+ */
+if (!function_exists('getImageFromBase64')) {
+    function getImageFromBase64($image_64): array
+    {
+        // https://laracasts.com/discuss/channels/laravel/create-image-from-base64-string-laravel?page=1&replyId=608290
+
+        $result = [];
+
+        $result['extension'] = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+
+        $replace = substr($image_64, 0, strpos($image_64, ',')+1);
+
+        $image = str_replace($replace, '', $image_64);
+        $result['image'] = str_replace(' ', '+', $image);
+
+        return $result;
+    }
+}

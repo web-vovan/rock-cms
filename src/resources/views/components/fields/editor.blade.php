@@ -41,7 +41,32 @@
             usrCfg.callbacks = {
                 onChange: function(contents, $editable) {
                 @this.set('{{$field}}', contents);
-                }
+                },
+                // загрузка картинок в редактор
+                onImageUpload: function(files) {
+                    let readers = [];
+
+                    for (let i = 0; i < files.length; i++) {
+                        let file = files[i];
+
+                        readers[i] = new FileReader()
+
+                        readers[i].readAsDataURL(file);
+
+                        readers[i].onload = function() {
+                        @this.editorUploadImages(readers[i].result)
+                            .then(result => {
+                                let imgNode = new Image()
+                                imgNode.src = result
+                                $('#{{ $fieldId }}').summernote('insertNode', imgNode);
+                            })
+                        };
+
+                        readers[i].onerror = function() {
+                            console.log(readers[i].error);
+                        };
+                    }
+                },
             }
 
             @isset($attributes['placeholder'])
@@ -67,9 +92,9 @@
 
             // Initialize the plugin.
             @if(isset($readonly))
-                $('#{{ $fieldId }}').summernote('disable');
+            $('#{{ $fieldId }}').summernote('disable');
             @else
-                $('#{{ $fieldId }}').summernote(usrCfg);
+            $('#{{ $fieldId }}').summernote(usrCfg);
             @endif
         })
     </script>

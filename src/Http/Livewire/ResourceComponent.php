@@ -8,6 +8,7 @@ use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Livewire\Redirector;
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Illuminate\Support\Facades\Storage;
 
 abstract class ResourceComponent extends Component
 {
@@ -33,6 +34,7 @@ abstract class ResourceComponent extends Component
         'saveAndExitResource' => 'saveAndExitResource',
         'deleteResource' => 'deleteResource',
         'cancelResource' => 'cancelResource',
+        'editorUploadImages' => 'editorUploadImages',
     ];
 
     /**
@@ -237,5 +239,23 @@ abstract class ResourceComponent extends Component
                 $propertyAccessor->setValue($this, $this->fieldSlug, $newSlug);
             }
         }
+    }
+
+    /**
+     * Загрузка картинок в редактор
+     *
+     * @param $file
+     * @return string
+     */
+    public function editorUploadImages($file): string
+    {
+        $dataImage = getImageFromBase64($file);
+
+        $path = 'editor/' . time() . Str::random(3) . '.' . $dataImage['extension'];
+
+        Storage::disk('public')->put($path, base64_decode($dataImage['image']));
+        $path = Storage::disk('public')->url($path);
+
+        return $path;
     }
 }
