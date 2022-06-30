@@ -44,7 +44,7 @@ class RockCmsUpdateCommand extends Command
 
         $this->call('adminlte:plugins', [
             'operation' => 'install',
-            '--plugin' => ['summernote', 'daterangepicker', 'tempusdominusBootstrap4', 'datatables'],
+            '--plugin' => ['summernote', 'daterangepicker', 'tempusdominusBootstrap4'],
             '--force' => true
         ]);
 
