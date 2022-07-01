@@ -2,8 +2,10 @@
     /*
      фикс для сортируемых блоков
      иначе если в id есть точка, то js не сработает
+    time добавил, чтобы срабатывала повторная инициализация
+    для редактора в модельном окне
      */
-    $fieldId = str_replace('.', '_', $field);
+    $fieldId = str_replace('.', '_', $field) . time();
     $enableMedia = isset($enableMedia);
 @endphp
 
