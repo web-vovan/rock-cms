@@ -6,7 +6,7 @@
     для редактора в модельном окне
      */
     $fieldId = str_replace('.', '_', $field) . time();
-    $enableMedia = isset($enableMedia);
+    $readonly = isset($readonly) ? 1 : 0;
 @endphp
 
 <div class="form-group row mb-4" wire:ignore>
@@ -23,6 +23,7 @@
     <script>
         tinymce.init({
             selector: '#{{$fieldId}}',
+            readonly : {{$readonly}} ? true : false,
             plugins: 'image code link textcolor lists table media',
             toolbar: 'undo redo removeformat | bold italic underline forecolor backcolor | numlist bullist | link image | code',
             /* enable title field in the Image dialog*/
