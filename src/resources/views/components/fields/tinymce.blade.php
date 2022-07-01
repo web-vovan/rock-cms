@@ -23,7 +23,7 @@
     <script>
         tinymce.init({
             selector: '#{{$fieldId}}',
-            plugins: 'image code link textcolor lists table',
+            plugins: 'image code link textcolor lists table media',
             toolbar: 'undo redo removeformat | bold italic underline forecolor backcolor | numlist bullist | link image | code',
             /* enable title field in the Image dialog*/
             language: 'ru',
