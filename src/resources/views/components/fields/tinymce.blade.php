@@ -27,8 +27,8 @@
             plugins: 'image code link textcolor lists table media',
             toolbar: 'undo redo removeformat | bold italic underline forecolor backcolor | numlist bullist | link image | code',
             /* enable title field in the Image dialog*/
-            language: 'ru',
-            language_url: '/vendor/tinymce/ru.js',
+            language: '{{ config('rock-cms.tinymce.language') }}',
+            language_url: '{{ config('rock-cms.tinymce.language_url') }}',
             menu: {
                 file: { title: 'File', items: '' },
                 edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
